@@ -53,6 +53,7 @@ RUN curl -LO https://github.com/actions/runner/releases/download/v${RUNNER_VERSI
     tar --touch --no-overwrite-dir -xzf actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && \
     rm actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
+USER root
 WORKDIR /home/runner
 
 CMD ["/entrypoint.sh"]
