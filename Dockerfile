@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 # Install required packages
 RUN apt-get update -y && \
@@ -38,14 +38,14 @@ RUN chmod +x /entrypoint.sh
 
 # Create runner user
 RUN useradd -m runner
-RUN mkdir /home/github-actions
 WORKDIR /home/runner
 
 RUN chown -R runner:runner /home/runner
-RUN chown -R runner:runner /home/github-actions
 
 USER runner
-WORKDIR /home/github-actions
+
+RUN mkdir /tmp/runner
+WORKDIR /tmp/runner
 
 # Download and extract GitHub Actions runner
 ENV RUNNER_VERSION=2.326.0
@@ -53,7 +53,5 @@ RUN curl -LO https://github.com/actions/runner/releases/download/v${RUNNER_VERSI
     tar --touch --no-overwrite-dir -xzf actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && \
     rm actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
-USER root
-WORKDIR /home/runner
-
 CMD ["/entrypoint.sh"]
+
