@@ -54,13 +54,4 @@ RUN curl -LO https://github.com/actions/runner/releases/download/v${RUNNER_VERSI
 
 WORKDIR /home/runner
 
-RUN ln -s /tmp/runner/bin /home/runner/bin
-RUN ln -s /tmp/runner/config.sh /home/runner/config.sh
-RUN ln -s /tmp/runner/env.sh /home/runner/env.sh
-RUN ln -s /tmp/runner/externals /home/runner/externals
-RUN ln -s /tmp/runner/run-helper.cmd.template /home/runner/run-helper.cmd.template
-RUN ln -s /tmp/runner/run-helper.sh.template /home/runner/run-helper.sh.template
-RUN ln -s /tmp/runner/run.sh /home/runner/run.sh
-RUN ln -s /tmp/runner/safe_sleep.sh /home/runner/safe_sleep.sh
-
 CMD ["/entrypoint.sh"]

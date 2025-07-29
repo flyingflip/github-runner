@@ -17,6 +17,15 @@ if [ ! -f .runner ]; then
   trap 'cleanup; exit 130' INT
   trap 'cleanup; exit 143' TERM
 
+  ln -s /tmp/runner/bin /home/runner/bin
+  ln -s /tmp/runner/config.sh /home/runner/config.sh
+  ln -s /tmp/runner/env.sh /home/runner/env.sh
+  ln -s /tmp/runner/externals /home/runner/externals
+  ln -s /tmp/runner/run-helper.cmd.template /home/runner/run-helper.cmd.template
+  ln -s /tmp/runner/run-helper.sh.template /home/runner/run-helper.sh.template
+  ln -s /tmp/runner/run.sh /home/runner/run.sh
+  ln -s /tmp/runner/safe_sleep.sh /home/runner/safe_sleep.sh
+
   ./config.sh \
     --url "$RUNNER_REPOSITORY_URL" \
     --token "$RUNNER_TOKEN" \
