@@ -38,13 +38,14 @@ RUN chmod +x /entrypoint.sh
 
 # Create runner user
 RUN useradd -m runner
+RUN mkdir /home/github-actions
 WORKDIR /home/runner
 
 RUN chown -R runner:runner /home/runner
+RUN chown -R runner:runner /home/github-actions
 
-RUN mkdir /tmp/runner && chown -R runner:runner /tmp/runner
 USER runner
-WORKDIR /tmp/runner
+WORKDIR /home/github-actions
 
 # Download and extract GitHub Actions runner
 ENV RUNNER_VERSION=2.326.0
